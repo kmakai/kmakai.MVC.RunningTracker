@@ -8,7 +8,7 @@ public class RunModel
 
     [DataType(DataType.Date)]
     public DateTime Date { get; set; }
-    public double Distance { get; set; }
+    public double Miles { get; set; }
 
-    public TimeSpan Time { get; set; }
+    public double Minutes { get; set; }
 }

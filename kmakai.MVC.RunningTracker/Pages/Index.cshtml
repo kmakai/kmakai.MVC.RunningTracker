@@ -4,7 +4,36 @@
     ViewData["Title"] = "Home page";
 }
 
-<div class="text-center">
-    <h1 class="display-4">Welcome</h1>
-    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
-</div>
+
+<a button type="button" class="btn btn-primary" asp-page="/Create">
+    Add a new run
+</a>
+
+<table>
+    <thead>
+        <tr class="">
+            <th>Date</th>
+            <th>Distance</th>
+            <th>Time</th>
+        </tr>
+    </thead>
+    <tbody>
+        @foreach (var run in Model.Runs)
+        {
+            <tr class="text-center">
+                <td>@run.Date.ToString("MM-dd-yyyy")</td>
+                <td>@run.Miles Mi</td>
+                <td>@run.Minutes Minutes</td>
+                <td>
+                    <a asp-page="./Edit" asp-route-id="@run.Id">Edit</a> |
+                    <a asp-page="./Details" asp-route-id="@run.Id">Details</a> |
+                    <a asp-page="./Delete" asp-route-id="@run.Id">Delete</a>
+                </td>
+            </tr>
+        }
+    </tbody>
+</table>
+
+@section Scripts {
+    @{await Html.RenderPartialAsync("_ValidationScriptsPartial");}
+}
